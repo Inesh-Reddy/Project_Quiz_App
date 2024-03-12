@@ -44,10 +44,11 @@ app.post("/create-question", async function(req, res) {
 });
 
 app.get("/question", async function(req, res) {
+    const { qid } = req.body;
     try{
         const question = await prisma.question.findFirst({
             where:{
-                qid:1
+                qid:qid
             }
         });
         return res.json({
